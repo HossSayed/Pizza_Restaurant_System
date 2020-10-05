@@ -1,0 +1,15 @@
+Developed by Hoss Sayed;
+
+this program is not finished yet.
+
+What is the program:
+
+- The program is a pizza and sweet restaurant for Arabic customers
+- Food written in Arabic.
+-It's management system for the cashier to choose what the customers ordered
+and calculate the total cost.
+- Enter what the customer payment.
+
+Tasks Not fininshed:
+- Print the outputs in the receipt textbox.
+- Create placeholder for the customer's payment box(" to tell the cashier that he has to enter the payment")
