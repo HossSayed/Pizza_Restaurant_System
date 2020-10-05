@@ -4,7 +4,6 @@ Email: hosamsayed425@gmail.com
 
 """
 
-
 from tkinter import *
 from tkinter import ttk
 import tkinter.messagebox
@@ -13,9 +12,6 @@ import datetime
 import time
 from PizzaData import *
 import os, tempfile
-
-
-#from bidi.algorithm import get_display
 
 
 class ElsalamPizza():

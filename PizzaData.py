@@ -1,7 +1,7 @@
 import Pizza_Restaurant
 from Pizza_Restaurant import *
 from Pizza_Restaurant import ElsalamPizza
-#E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,E11,E12,E13,E14,E15,E16,E17,E18,I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,I14,I15,I16,I17,I18,I19,PR1,PR2,PR3,PR4,PR5,PR6,PR7,PR8,PR9,PR10,PR11,PR12,AP1,AP2,AP3,AP4,AP5,AP6,AP6,AP7,AP8,AP9,AP10,AP11,AP12,AP13,AP14,AP15,AP16,AP17,AP18,AP19,SH1,SH2,SH3,SH4,SH5,SH6,HW1,HW2,HW3,HW4,HW5,BP1,BP2,BP3,BP4,BP5,BP
+
 
 # Eastern Pizza
 E1 = 'جبنة رومي'
@@ -180,12 +180,3 @@ SP7 = 'فطيرة شيكولاته ومكسرات'
 SP8 = 'فطيرة ملوكي مكسرات'
 SP9 = 'فطيرة بلاك فورست'
 SP10 = 'فطيرة تورتة السلام'
-
-#====================================== FUNCTIONS OF COMBOBOXES SELECTION ==================================
-
-
-
-
-
-
-
