@@ -21,7 +21,7 @@ class ElsalamPizza():
         self.root.geometry("1350x690+0+0")
         self.root.config(bg='#323233')
     
-        
+        # Frames of The user interface
         MainFrame = Frame(self.root, bd=10, width=1350, height=690, bg='#323233', relief=RIDGE)
         MainFrame.grid()
 
