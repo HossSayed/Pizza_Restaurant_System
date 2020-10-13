@@ -1,5 +1,5 @@
 """
-Developed By Hoss Sayed, 2020
+Developed by Hossam Sayed, 2020
 Email: hosamsayed425@gmail.com
 
 """
@@ -20,8 +20,8 @@ class ElsalamPizza():
         self.root.title("Pizza Restaurant Management")
         self.root.geometry("1350x690+0+0")
         self.root.config(bg='#323233')
-
     
+        # Frames of The user interface
         MainFrame = Frame(self.root, bd=10, width=1350, height=690, bg='#323233', relief=RIDGE)
         MainFrame.grid()
 
@@ -46,8 +46,7 @@ class ElsalamPizza():
         TopFrame1Rightb.pack(side=BOTTOM)
 
 #=============================================== VARIABLES ==================================================
-
-        # Variables of CheckButtons
+        # Variables of the CheckButtons
         var1 = IntVar()
         var2 = IntVar()
         var3 = IntVar()
@@ -63,7 +62,7 @@ class ElsalamPizza():
         var13 = IntVar()
         var14 = IntVar()
         
-        # Variables of Food
+        # Variables of Food's quantity 
         EasternPizza = StringVar()
         ItalianPizza = StringVar()
         AlexPies = StringVar()
@@ -72,7 +71,7 @@ class ElsalamPizza():
         Hawawshi = StringVar()
         BakedPasta = StringVar()
 
-        # Variables of Sweets
+        # Variables of Sweets's quantity
         Cripe = StringVar()
         SweetCripe = StringVar()
         Muejanat = StringVar()
@@ -81,7 +80,7 @@ class ElsalamPizza():
         Patissries = StringVar()
         SweetPies = StringVar()
 
-        # Variables of combobox of Food Type
+        # Variables of Comboboxex of the Food Type and Size
         E_PizzaType = StringVar()
         E_PizzaSize = IntVar()
         It_PizzaType = StringVar()
@@ -97,7 +96,7 @@ class ElsalamPizza():
         BPasta_Type = StringVar()
         BPasta_Size = IntVar()
 
-        # Variables of combobox of Sweets
+        # Variables of Comboboxes of Sweets Type and Size
         Cr_Type = StringVar()
         Cr_Size = IntVar()
         SwCr_Type = StringVar()
@@ -113,13 +112,13 @@ class ElsalamPizza():
         SwPies_Type = StringVar()
         SwPies_Size = IntVar()
 
-        # Variables of Payment part
+        # Variables of Payment Division
         Paid = StringVar()
         ReqNumber = StringVar()
         SubTotal = StringVar()
         Total = StringVar()
 
-        # Assign the variables of Food and Sweets by default
+        # Assigning the Values of Quantity of the Food and Sweets to Zeros by default
         EasternPizza.set("0")
         ItalianPizza.set("0")
         AlexPies.set("0")
@@ -135,10 +134,24 @@ class ElsalamPizza():
         Patissries.set("0")
         SweetPies.set("0")
 
-#======================================= FUNCTIONS OF CHECKBUTTONS ========================================================
+#===================================== FUNCTIONS OF THE BUTTONS ==============================================================
+        # Exit Function
+        def Exit():
+                iExit = tkinter.messagebox.askyesno(" Pizza Restaurant Management  ", " Do you want to exit from the system?                     ")
+                if iExit > 0:
+                        root.destroy()
+                        return
+        
+        # Print Function
+        def iPrint():
+            q = self.txtReceipt.get("1.0", "end -1c")
+            filename = tempfile.mktemp(".doc")
+            open (filename, "w").write(q)
+            os.startfile(filename, "print")
 
+        # Total Cost Function
         def TotalCost():
-                # Get the sum of the number of the required
+                # Get the Sum of the Required Quantity
                 a = int(EasternPizza.get())
                 b = int(ItalianPizza.get())
                 c = int(AlexPies.get())
@@ -156,6 +169,7 @@ class ElsalamPizza():
                 rn = a + b + c + d + e + f + g + h + i + j + k + l + m + n
                 ReqNumber.set(rn)
                 
+                # Get The Size of the required food or sweets from the Size's ComboBoxes
                 a1 = E_PizzaSize.get()
                 b1 = It_PizzaSize.get()
                 c1 = Alx_PiesSize.get()
@@ -171,14 +185,134 @@ class ElsalamPizza():
                 m1 = Pattis_Size.get()
                 n1 = SwPies_Size.get()
 
-                t = (a*a1) + (b*b1) + (c*c1) + (d*d1) + (e*e1) + (f*f1) + (g*g1) + (h*h1) + (i*i1) + (j*j1) + (k*k1) + (l*l1) + (m*m1) + (n*n1)
-                Total.set(t)
+                try:
+                        # Calculate the Total Cost
+                        t = (a*a1) + (b*b1) + (c*c1) + (d*d1) + (e*e1) + (f*f1) + (g*g1) + (h*h1) + (i*i1) + (j*j1) + (k*k1) + (l*l1) + (m*m1) + (n*n1)
+                        Total.set(t)
 
-                st = int(Paid.get()) - t
-                SubTotal.set(st)
+                        # Calculate the remaining money(SubTotal) by subtracting what the client paid from total cost 
+                        st = int(Paid.get()) - t
+                        SubTotal.set(st)
+                # Raise a warning message if the Paid box is not numeric or not empty
+                except ValueError:
+                        if (Paid.get() == ""):
+                                pass
+                        else:
+                                tkinter.messagebox.showwarning(" Pizza Restaurant Management  ", "  من فضلك تاكد من أن خانة 'المبلغ المدفوع ' بها أرقام فقط أو اتركها فارغة")
+                        
 
+        # Reset Function
+        def Reset():
+                var1.set(0)
+                var2.set(0)
+                var3.set(0)
+                var4.set(0)
+                var5.set(0)
+                var6.set(0)
+                var7.set(0)
+                var8.set(0)
+                var9.set(0)
+                var10.set(0)
+                var11.set(0)
+                var12.set(0)
+                var13.set(0)
+                var14.set(0)
 
+                EasternPizza.set("0")
+                ItalianPizza.set("0")
+                AlexPies.set("0")
+                PizzaRolls.set("0")
+                Shawarma.set("0")
+                Hawawshi.set("0")
+                BakedPasta.set("0")
+                Cripe.set("0")
+                SweetCripe.set("0")
+                Muejanat.set("0")
+                Sweets.set("0")
+                Chocolates.set("0")
+                Patissries.set("0")
+                SweetPies.set("0")
 
+                Paid.set("")
+                ReqNumber.set("")
+                SubTotal.set("")
+                Total.set("")
+                self.txtReceipt.delete("1.0", END)
+
+                E_PizzaType.set("")
+                E_PizzaSize.set("0")
+                It_PizzaType.set("")
+                It_PizzaSize.set("0")
+                Alx_PiesType.set("")
+                Alx_PiesSize.set("0")
+                Rol_PizzaType.set("")
+                Rol_PizzaSize.set("0")
+                Shw_Type.set("")
+                Shw_Size.set("0")
+                Haw_Type.set("")
+                Haw_Size.set("0")
+                BPasta_Type.set("")
+                BPasta_Size.set("0")
+
+                Cr_Type.set("")
+                Cr_Size.set("0")
+                SwCr_Type.set("")
+                SwCr_Size.set("0")
+                Muj_Type.set("")
+                Muj_Size.set("0")
+                Swts_Type.set("")
+                Swts_Size.set("0")
+                Choco_Type.set("")
+                Choco_Size.set("0")
+                Patiss_Type.set("")
+                Pattis_Size.set("0")
+                SwPies_Type.set("")
+                SwPies_Size.set("0")
+
+                self.txtEasternPizzaN.configure(state=DISABLED)
+                self.txtItalianPizzaN.configure(state=DISABLED)
+                self.txtAlexPiesN.configure(state=DISABLED)
+                self.txtPizzaRollN.configure(state=DISABLED)
+                self.txtShawarmaN.configure(state=DISABLED)
+                self.txtHawawshiN.configure(state=DISABLED)
+                self.txtBakedPastaN.configure(state=DISABLED)
+                self.txtCripeN.configure(state=DISABLED)
+                self.txtSweetCripeN.configure(state=DISABLED)
+                self.txtMuejnatN.configure(state=DISABLED)
+                self.txtSweetsN.configure(state=DISABLED)
+                self.txtChocolatesN.configure(state=DISABLED)
+                self.txtPattissriesN.configure(state=DISABLED)
+                self.txtSweetPiesN.configure(state=DISABLED)
+                self.cboEasternPizza.configure(state='disabled')
+                self.cboEasternPizzaS.configure(state='disabled')
+                self.cboItalianPizza.configure(state='disabled')
+                self.cboItalianPizzaS.configure(state='disabled')
+                self.cboPizzaRoll.configure(state='disabled')
+                self.cboPizzaRollS.configure(state='disabled')
+                self.cboAlexPies.configure(state='disabled')
+                self.cboAlexPiesS.configure(state='disabled')
+                self.cboShawarma.configure(state='disabled')
+                self.cboShawarmaS.configure(state='disabled')
+                self.cboHawawshi.configure(state='disabled')
+                self.cboHawawshiS.configure(state='disabled')
+                self.cboBakedPasta.configure(state='disabled')
+                self.cboBakedPastaS.configure(state='disabled')
+                self.cboCripe.configure(state='disabled')
+                self.cboCripeS.configure(state='disabled')
+                self.cboSweetCripe.configure(state='disabled')
+                self.cboSweetCripeS.configure(state='disabled')
+                self.cboMuejnat.configure(state='disabled')
+                self.cboMuejnatS.configure(state='disabled')
+                self.cboSweets.configure(state='disabled')
+                self.cboSweetsS.configure(state='disabled')
+                self.cboChocolates.configure(state='disabled')
+                self.cboChocolatesS.configure(state='disabled')
+                self.cboPattissries.configure(state='disabled')
+                self.cboPattissriesS.configure(state='disabled')
+                self.cboSweetPies.configure(state='disabled')
+                self.cboSweetPiesS.configure(state='disabled')        
+
+#================================== DISABLE THE COMBOBOXES AND TEXTBOXES IF THE CHECKBUTTON IS NOT SELECTED =========================
         def ch_EasternPizza():
                 if (var1.get() == 1):
                         self.txtEasternPizzaN.configure(state=NORMAL)
@@ -390,136 +524,8 @@ class ElsalamPizza():
                         SwPies_Type.set("")
                         SwPies_Size.set("")
 
-#===================================== FUNCTIONS OF THE BUTTONS==============================================================
-
-        # Exit Button
-        def Exit():
-                iExit = tkinter.messagebox.askyesno(" Pizza Restaurant Management  ", " Do you want to exit from the system?                     ")
-                if iExit > 0:
-                        root.destroy()
-                        return
-        def iPrint():
-            q = self.txtReceipt.get("1.0", "end -1c")
-            filename = tempfile.mktemp(".doc")
-            open (filename, "w").write(q)
-            os.startfile(filename, "print")
-
-        # Reset Button
-        def Reset():
-                var1.set(0)
-                var2.set(0)
-                var3.set(0)
-                var4.set(0)
-                var5.set(0)
-                var6.set(0)
-                var7.set(0)
-                var8.set(0)
-                var9.set(0)
-                var10.set(0)
-                var11.set(0)
-                var12.set(0)
-                var13.set(0)
-                var14.set(0)
-
-                EasternPizza.set("0")
-                ItalianPizza.set("0")
-                AlexPies.set("0")
-                PizzaRolls.set("0")
-                Shawarma.set("0")
-                Hawawshi.set("0")
-                BakedPasta.set("0")
-                Cripe.set("0")
-                SweetCripe.set("0")
-                Muejanat.set("0")
-                Sweets.set("0")
-                Chocolates.set("0")
-                Patissries.set("0")
-                SweetPies.set("0")
-
-                Paid.set("")
-                ReqNumber.set("")
-                SubTotal.set("")
-                Total.set("")
-                self.txtReceipt.delete("1.0", END)
-
-                E_PizzaType.set("")
-                E_PizzaSize.set("")
-                It_PizzaType.set("")
-                It_PizzaSize.set("")
-                Alx_PiesType.set("")
-                Alx_PiesSize.set("")
-                Rol_PizzaType.set("")
-                Rol_PizzaSize.set("")
-                Shw_Type.set("")
-                Shw_Size.set("")
-                Haw_Type.set("")
-                Haw_Size.set("")
-                BPasta_Type.set("")
-                BPasta_Size.set("")
-
-                Cr_Type.set("")
-                Cr_Size.set("")
-                SwCr_Type.set("")
-                SwCr_Size.set("")
-                Muj_Type.set("")
-                Muj_Size.set("")
-                Swts_Type.set("")
-                Swts_Size.set("")
-                Choco_Type.set("")
-                Choco_Size.set("")
-                Patiss_Type.set("")
-                Pattis_Size.set("")
-                SwPies_Type.set("")
-                SwPies_Size.set("")
-
-                self.txtEasternPizzaN.configure(state=DISABLED)
-                self.txtItalianPizzaN.configure(state=DISABLED)
-                self.txtAlexPiesN.configure(state=DISABLED)
-                self.txtPizzaRollN.configure(state=DISABLED)
-                self.txtShawarmaN.configure(state=DISABLED)
-                self.txtHawawshiN.configure(state=DISABLED)
-                self.txtBakedPastaN.configure(state=DISABLED)
-                self.txtCripeN.configure(state=DISABLED)
-                self.txtSweetCripeN.configure(state=DISABLED)
-                self.txtMuejnatN.configure(state=DISABLED)
-                self.txtSweetsN.configure(state=DISABLED)
-                self.txtChocolatesN.configure(state=DISABLED)
-                self.txtPattissriesN.configure(state=DISABLED)
-                self.txtSweetPiesN.configure(state=DISABLED)
-                self.cboEasternPizza.configure(state='disabled')
-                self.cboEasternPizzaS.configure(state='disabled')
-                self.cboItalianPizza.configure(state='disabled')
-                self.cboItalianPizzaS.configure(state='disabled')
-                self.cboPizzaRoll.configure(state='disabled')
-                self.cboPizzaRollS.configure(state='disabled')
-                self.cboAlexPies.configure(state='disabled')
-                self.cboAlexPiesS.configure(state='disabled')
-                self.cboShawarma.configure(state='disabled')
-                self.cboShawarmaS.configure(state='disabled')
-                self.cboHawawshi.configure(state='disabled')
-                self.cboHawawshiS.configure(state='disabled')
-                self.cboBakedPasta.configure(state='disabled')
-                self.cboBakedPastaS.configure(state='disabled')
-                self.cboCripe.configure(state='disabled')
-                self.cboCripeS.configure(state='disabled')
-                self.cboSweetCripe.configure(state='disabled')
-                self.cboSweetCripeS.configure(state='disabled')
-                self.cboMuejnat.configure(state='disabled')
-                self.cboMuejnatS.configure(state='disabled')
-                self.cboSweets.configure(state='disabled')
-                self.cboSweetsS.configure(state='disabled')
-                self.cboChocolates.configure(state='disabled')
-                self.cboChocolatesS.configure(state='disabled')
-                self.cboPattissries.configure(state='disabled')
-                self.cboPattissriesS.configure(state='disabled')
-                self.cboSweetPies.configure(state='disabled')
-                self.cboSweetPiesS.configure(state='disabled')
-
-#============================== FUNCTIONS TO POPULATE COMBOBOX OF SIZE BASED ON COMBOBOX OF TYPE =========================================
-
-        
+#============================== FUNCTIONS TO POPULATE THE COMBOBOXES OF SIZE BASED ON COMBOBOXES OF TYPE =========================================         
         def iEaster_Pizz(event):
-                #Epizza1=
                 EpType = str(self.cboEasternPizza.get())
                 if EpType == E1 or EpType==E3:
                         size_EP=['30','40','50']
@@ -547,7 +553,6 @@ class ElsalamPizza():
                         size_EP =['40','52','65']
                 elif EpType == E18:
                         size_Ep =['55','65']
-
                 self.cboEasternPizzaS.config(values=size_EP)
 
         def iItalian_Pizza(event):
@@ -563,8 +568,7 @@ class ElsalamPizza():
                 elif IpType == I13 or IpType == I15 or IpType == I17 or IpType == I19:
                         size_Ip=['40','50','65']
                 elif IpType == I14 or IpType == I16 or IpType == I18:
-                        size_Ip=['25','45','65']
-                
+                        size_Ip=['25','45','65']             
                 self.cboItalianPizzaS.config(values=size_Ip)
 
         def iPizza_Roll(event):
@@ -580,8 +584,7 @@ class ElsalamPizza():
                 elif PrType == PR9 or PrType == PR11:
                         size_Pr=['40','50','65']
                 elif PrType == PR10 or PrType == PR12:
-                        size_Pr=['25','45','65']
-                
+                        size_Pr=['25','45','65']              
                 self.cboPizzaRollS.config(values=size_Pr)
 
         def iAlex_Pies(event):
@@ -597,8 +600,7 @@ class ElsalamPizza():
                 elif ApType == AP13 or ApType == AP15 or ApType == AP17 or ApType == AP19:
                         size_Ap=['40','50','65']
                 elif ApType == AP14 or ApType == AP16 or ApType == AP18:
-                        size_Ap=['25','45','65']
-                
+                        size_Ap=['25','45','65']              
                 self.cboAlexPiesS.config(values=size_Ap)
 
         def iShawrma(event):
@@ -609,7 +611,6 @@ class ElsalamPizza():
                         size_Sh=['35','45','55']
                 elif ShType == SH5 or ShType == SH6:
                         size_Sh=['40','50','65']
-
                 self.cboShawarmaS.config(values=size_Sh)
 
         def iHawashi(event):
@@ -618,9 +619,7 @@ class ElsalamPizza():
                         size_hw = ['30','40','50']
                 elif HwType == HW2 or HwType == HW5:
                         size_hw = ['35','45','55']
-
                 self.cboHawawshiS.config(values=size_hw)
-
 
         def iBaked_Pasta(event):
                 BpType = str(self.cboBakedPasta.get())
@@ -630,7 +629,6 @@ class ElsalamPizza():
                         size_bp = ['30','40','50']
                 elif BpType == BP7 or BpType == BP8:
                         size_bp = ['40','50','65']
-
                 self.cboBakedPastaS.config(values=size_bp)
 
         def iCripe(event):
@@ -647,7 +645,6 @@ class ElsalamPizza():
                         size_c = ['35','45','55']
                 elif cType == C18 or cType == C20 or cType == C22 or cType == C24:
                         size_c = ['55','65']
-
                 self.cboCripeS.config(values=size_c)
 
         def iSweet_cripe(event):
@@ -656,7 +653,6 @@ class ElsalamPizza():
                         size_sw = ['25','45','65']
                 elif scType == SC2:
                         size_sw = ['30','40','50']
-
                 self.cboSweetCripeS.config(values=size_sw)
 
         def iMujnat(event):
@@ -665,7 +661,6 @@ class ElsalamPizza():
                         size_m = ['25','45','65']
                 elif mType == M2 or mType == M4:
                         size_m = ['30','40','50']
-
                 self.cboMuejnatS.config(values=size_m)
 
         def iSweets(event):
@@ -676,7 +671,6 @@ class ElsalamPizza():
                         size_s = ['35','45','55']
                 elif sType == S7 or sType == S8:
                         size_s = ['30','40','50']
-
                 self.cboSweetsS.config(values=size_s)
 
         def iChocolates(event):
@@ -685,7 +679,6 @@ class ElsalamPizza():
                         size_ch = ['25','45','65']
                 elif chType == CH2 or chType == CH4:
                         size_ch = ['30','40','50']
-
                 self.cboChocolatesS.config(values=size_ch)   
 
         def iPattissries(event):
@@ -694,7 +687,6 @@ class ElsalamPizza():
                         size_ps = ['25','45','65']
                 elif psType == P2 or psType == P4 or psType == P6:
                         size_ps = ['30','40','50']
-
                 self.cboPattissriesS.config(values=size_ps)
 
         def iSweet_pies(event):
@@ -705,11 +697,9 @@ class ElsalamPizza():
                         size_sp = ['25','45','65']
                 elif spType == SP7 or spType == SP9 or spType == SP10:
                         size_sp = ['35','45','55']
-
                 self.cboSweetPiesS.config(values=size_sp)
 
 #================================================= TOP FRAME 2 RIGHT =====================================================       
-
         # Eastern Pizza
         self.chEasternPizza = Checkbutton(TopFrame2Right, variable=var1, onvalue=1, offvalue=0, command=ch_EasternPizza, text=" بيتزا شرقي ",  font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chEasternPizza.grid(row=1,column=3, pady=7) 
@@ -725,8 +715,7 @@ class ElsalamPizza():
             
         self.txtEasternPizzaN = Entry(TopFrame2Right, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=EasternPizza, justify=CENTER)
         self.txtEasternPizzaN.grid(row=1, column=0, padx=7, pady=7)
-        
-        
+               
         # Italian Pizza
         self.chItalianPizza = Checkbutton(TopFrame2Right, variable=var2, onvalue=1, offvalue=0, command=ch_ItalianPizza, text=" بيتزا إيطالي", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chItalianPizza.grid(row=2,column=3, pady=7)  
@@ -743,7 +732,6 @@ class ElsalamPizza():
         self.txtItalianPizzaN = Entry(TopFrame2Right, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=ItalianPizza, justify=CENTER)
         self.txtItalianPizzaN.grid(row=2, column=0, padx=7, pady=7)
 
-
         # Pizza Roll
         self.chPizzaRoll = Checkbutton(TopFrame2Right, variable=var3, onvalue=1, offvalue=0, command=ch_PizzaRoll,text=" بيتزا صواريخ ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chPizzaRoll.grid(row=3,column=3,pady=7)  
@@ -759,7 +747,6 @@ class ElsalamPizza():
         
         self.txtPizzaRollN = Entry(TopFrame2Right, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=PizzaRolls, justify=CENTER)
         self.txtPizzaRollN.grid(row=3, column=0, padx=7, pady=7)
-
 
         # Alex Pies
         self.chAlexPies = Checkbutton(TopFrame2Right, variable=var4, onvalue=1, offvalue=0, command=ch_AlexPies, text=" فطائر إسكندراني ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
@@ -793,7 +780,6 @@ class ElsalamPizza():
         self.txtShawarmaN = Entry(TopFrame2Right, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=Shawarma, justify=CENTER)
         self.txtShawarmaN.grid(row=5, column=0, padx=7, pady=7)
 
-
         # Hawawshi
         self.chHawawshi = Checkbutton(TopFrame2Right, variable=var6, onvalue=1, offvalue=0, command=ch_Hawawshi, text=" حواوشي إسكندراني ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chHawawshi.grid(row=6,column=3, pady=7)  
@@ -810,7 +796,6 @@ class ElsalamPizza():
         self.txtHawawshiN = Entry(TopFrame2Right, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=Hawawshi, justify=CENTER)
         self.txtHawawshiN.grid(row=6, column=0, padx=7, pady=7)
 
-
         # Baked Pasta
         self.chBakedPasta = Checkbutton(TopFrame2Right, variable=var7, onvalue=1, offvalue=0, command=ch_BakedPasta, text=" مكرونة فرن ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chBakedPasta.grid(row=7,column=3, pady=17) 
@@ -825,11 +810,9 @@ class ElsalamPizza():
         self.cboBakedPastaS.grid(row=7, column=1, padx=7, pady=7)
         
         self.txtBakedPastaN = Entry(TopFrame2Right, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=BakedPasta, justify=CENTER)
-        self.txtBakedPastaN.grid(row=7, column=0, padx=7, pady=7)  
-
+        self.txtBakedPastaN.grid(row=7, column=0, padx=7, pady=7) 
 
 #================================================= TOP FRAME 2 LEFT =====================================================
-
         # Cripe 
         self.chCripe = Checkbutton(TopFrame2Left, variable=var8, onvalue=1, offvalue=0, command=ch_Cripe, text=" كريب حادق ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chCripe.grid(row=1,column=3, pady=7) 
@@ -845,8 +828,7 @@ class ElsalamPizza():
         
         self.txtCripeN = Entry(TopFrame2Left, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=Cripe, justify=CENTER)
         self.txtCripeN.grid(row=1, column=0, padx=7, pady=7)
-        
-        
+               
         # Sweet Cripe
         self.chSweetCripe = Checkbutton(TopFrame2Left, variable=var9, onvalue=1, offvalue=0, command=ch_SweetCripe, text=" كريب حلو ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chSweetCripe.grid(row=2,column=3, pady=7)  
@@ -863,7 +845,6 @@ class ElsalamPizza():
         self.txtSweetCripeN = Entry(TopFrame2Left, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=SweetCripe, justify=CENTER)
         self.txtSweetCripeN.grid(row=2, column=0, padx=7, pady=7)
 
-
         # Muejnat
         self.chMuejnat = Checkbutton(TopFrame2Left, variable=var10, onvalue=1, offvalue=0, command=ch_Muejanat, text=" معجنات ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chMuejnat.grid(row=3,column=3,pady=7)  
@@ -879,7 +860,6 @@ class ElsalamPizza():
         
         self.txtMuejnatN = Entry(TopFrame2Left, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=Muejanat, justify=CENTER)
         self.txtMuejnatN.grid(row=3, column=0, padx=7, pady=7)
-
 
         # Sweets
         self.chSweets = Checkbutton(TopFrame2Left, variable=var11, onvalue=1, offvalue=0, command=ch_Sweets, text=" حلويات ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
@@ -913,7 +893,6 @@ class ElsalamPizza():
         self.txtChocolatesN = Entry(TopFrame2Left, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=Chocolates, justify=CENTER)
         self.txtChocolatesN.grid(row=5, column=0, padx=7, pady=7)
 
-
         # Pattissries
         self.chPattissries = Checkbutton(TopFrame2Left, variable=var13, onvalue=1, offvalue=0, command=ch_Patisseries, text=" مخبوزات ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chPattissries.grid(row=6,column=3, pady=7)  
@@ -929,7 +908,6 @@ class ElsalamPizza():
         
         self.txtPattissriesN = Entry(TopFrame2Left, font=('arial', 10,'bold'), width=10, state=DISABLED, textvariable=Patissries, justify=CENTER)
         self.txtPattissriesN.grid(row=6, column=0, padx=7, pady=7)
-
 
         # Sweet Pies
         self.chSweetPies = Checkbutton(TopFrame2Left, variable=var14, onvalue=1, offvalue=0, command=ch_SweetPies, text=" فطائر حلوة ", font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
@@ -948,13 +926,10 @@ class ElsalamPizza():
         self.txtSweetPiesN.grid(row=7, column=0, padx=7, pady=7)  
 
 #================================== TOP FRAME 1 LEFT ========================================================================
-
-        self.txtReceipt = Text(TopFrame1Left, font=('courier', 12), width=64, height=12)
+        self.txtReceipt = Text(TopFrame1Left, state='disabled', font=('courier', 12), width=64, height=12)
         self.txtReceipt.grid(row=0, column=0)
 
-
 #================================== TOP FRAME 1 RIGHT b ========================================================================
-
         # Buttons
         self.btnTotal = Button(TopFrame1Rightb, text="المبلغ الكلي", padx=25, pady=1, font=('arial', 18, 'bold'), bd=5, bg='#818183', command=TotalCost).grid(row=0, column=3, pady=1)
         self.btnPrint = Button(TopFrame1Rightb, text="   طباعة   ", padx=25, pady=1, font=('arial', 18, 'bold'), bd=5, bg='#818183', command=iPrint).grid(row=0, column=2, pady=1)
@@ -962,27 +937,34 @@ class ElsalamPizza():
         self.btnExit = Button(TopFrame1Rightb, text="   خروج   ", padx=25, pady=1, font=('arial', 18, 'bold'), bd=5, bg='#818183', command=Exit).grid(row=0, column=0, pady=1)
 
 #================================== TOP FRAME 1 RIGHT A ========================================================================
+        def paidText(event):
+                self.txtPaid.delete(0, END)
+                paidCheck = True
+
+        paidCheck = False
 
         self.lblRequiredNum = Label(TopFrame1Righta, text="العدد المطلوب", font=('arial', 18, 'bold'), bd=5, bg='#7E7E81', fg='black')
         self.lblRequiredNum.grid(row=0, column=3, padx=5, pady=17)
-        self.txtRequiredNum = Entry(TopFrame1Righta, font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=ReqNumber)
+        self.txtRequiredNum = Entry(TopFrame1Righta, state='readonly', font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=ReqNumber)
         self.txtRequiredNum.grid(row=0, column=2, padx=13, pady=17)
 
         self.lblPaid = Label(TopFrame1Righta, text= "المبلغ المدفوع", font=('arial', 18, 'bold'), bd=5, bg='#7E7E81', fg='black')
         self.lblPaid.grid(row=0, column=1, padx=5, pady=17)
+        # This Value must be entered by the Admin(e.g. Cashier)
         self.txtPaid = Entry(TopFrame1Righta, font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=Paid)
         self.txtPaid.grid(row=0, column=0, padx=13, pady=17)
+        self.txtPaid.insert(0, 'أدخل المبلغ')
+        self.txtPaid.bind('<Button>', paidText)
 
         self.lblTotal = Label(TopFrame1Righta, text= "   الحساب    ", font=('arial', 18, 'bold'), bd=5, bg='#7E7E81', fg='black')
         self.lblTotal.grid(row=1, column=3, pady=5)
-        self.txtTotal = Entry(TopFrame1Righta, font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=Total)
+        self.txtTotal = Entry(TopFrame1Righta, state='readonly', font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=Total)
         self.txtTotal.grid(row=1, column=2, padx=13, pady=17)
 
         self.lblSubTotal = Label(TopFrame1Righta, text=" باقي الحساب ", font=('arial', 18, 'bold'), bd=5, bg='#7E7E81', fg='black')
         self.lblSubTotal.grid(row=1, column=1, padx=5, pady=17)
-        self.txtSubTotal = Entry(TopFrame1Righta, font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=SubTotal)
+        self.txtSubTotal = Entry(TopFrame1Righta, state='readonly', font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=SubTotal)
         self.txtSubTotal.grid(row=1, column=0, padx=13, pady=17)
-
 
 
 if __name__ == "__main__":
