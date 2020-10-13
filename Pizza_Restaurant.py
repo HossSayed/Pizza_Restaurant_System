@@ -937,12 +937,13 @@ class ElsalamPizza():
         self.btnExit = Button(TopFrame1Rightb, text="   خروج   ", padx=25, pady=1, font=('arial', 18, 'bold'), bd=5, bg='#818183', command=Exit).grid(row=0, column=0, pady=1)
 
 #================================== TOP FRAME 1 RIGHT A ========================================================================
+        # Function of PlaceHolder in Paid Entry Box
         def paidText(event):
                 self.txtPaid.delete(0, END)
                 paidCheck = True
-
         paidCheck = False
 
+        # Label and Textboxes of Payment Division
         self.lblRequiredNum = Label(TopFrame1Righta, text="العدد المطلوب", font=('arial', 18, 'bold'), bd=5, bg='#7E7E81', fg='black')
         self.lblRequiredNum.grid(row=0, column=3, padx=5, pady=17)
         self.txtRequiredNum = Entry(TopFrame1Righta, state='readonly', font=('arial', 18, 'bold'), bd=5, width=12, justify=RIGHT, textvariable=ReqNumber)
