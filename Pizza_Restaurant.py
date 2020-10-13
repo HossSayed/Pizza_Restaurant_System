@@ -326,7 +326,7 @@ class ElsalamPizza():
                         self.cboEasternPizza.configure(state='disabled')
                         self.cboEasternPizzaS.configure(state='disabled')
                         E_PizzaType.set("")
-                        E_PizzaSize.set("")
+                        E_PizzaSize.set("0")
                                  
         def ch_ItalianPizza():
                 if (var2.get() == 1):
@@ -341,7 +341,7 @@ class ElsalamPizza():
                         self.cboItalianPizza.configure(state='disabled')
                         self.cboItalianPizzaS.configure(state='disabled')
                         It_PizzaType.set("")
-                        It_PizzaSize.set("")
+                        It_PizzaSize.set("0")
 
         def ch_PizzaRoll():
                 if (var3.get() == 1):
@@ -357,7 +357,7 @@ class ElsalamPizza():
                         self.cboPizzaRoll.configure(state='disabled')
                         self.cboPizzaRollS.configure(state='disabled')
                         Rol_PizzaSize.set("")
-                        Rol_PizzaType.set("")
+                        Rol_PizzaType.set("0")
 
         def ch_AlexPies():
                 if (var4.get() == 1):
@@ -372,7 +372,7 @@ class ElsalamPizza():
                         self.cboAlexPies.configure(state='disabled')
                         self.cboAlexPiesS.configure(state='disabled')
                         Alx_PiesType.set("")
-                        Alx_PiesSize.set("")
+                        Alx_PiesSize.set("0")
 
         def ch_Shawrma():
                 if (var5.get() == 1):
@@ -387,7 +387,7 @@ class ElsalamPizza():
                         self.cboShawarma.configure(state='disabled')
                         self.cboShawarmaS.configure(state='disabled')
                         Shw_Type.set("")
-                        Shw_Size.set("")
+                        Shw_Size.set("0")
 
         def ch_Hawawshi():
                 if (var6.get() == 1):
@@ -402,7 +402,7 @@ class ElsalamPizza():
                         self.cboHawawshi.configure(state='disabled')
                         self.cboHawawshiS.configure(state='disabled')
                         Haw_Type.set("")
-                        Haw_Size.set("")
+                        Haw_Size.set("0")
 
         def ch_BakedPasta():
                 if (var7.get() == 1):
@@ -417,7 +417,7 @@ class ElsalamPizza():
                         self.cboBakedPasta.configure(state='disabled')
                         self.cboBakedPastaS.configure(state='disabled')
                         BPasta_Type.set("")
-                        BPasta_Size.set("")
+                        BPasta_Size.set("0")
 
         def ch_Cripe():
                 if (var8.get() == 1):
@@ -432,7 +432,7 @@ class ElsalamPizza():
                         self.cboCripe.configure(state='disabled')
                         self.cboCripeS.configure(state='disabled')
                         Cr_Type.set("")
-                        Cr_Size.set("")
+                        Cr_Size.set("0")
 
         def ch_SweetCripe():
                 if (var9.get() == 1):
@@ -447,7 +447,7 @@ class ElsalamPizza():
                         self.cboSweetCripe.configure(state='disabled')
                         self.cboSweetCripeS.configure(state='disabled')
                         SwCr_Type.set("")
-                        SwCr_Size.set("")
+                        SwCr_Size.set("0")
 
         def ch_Muejanat():
                 if (var10.get() == 1):
@@ -462,7 +462,7 @@ class ElsalamPizza():
                         self.cboMuejnat.configure(state='disabled')
                         self.cboMuejnatS.configure(state='disabled')
                         Muj_Type.set("")
-                        Muj_Size.set("")
+                        Muj_Size.set("0")
 
         def ch_Sweets():
                 if (var11.get() == 1):
@@ -477,7 +477,7 @@ class ElsalamPizza():
                         self.cboSweets.configure(state='disabled')
                         self.cboSweetsS.configure(state='disabled')
                         Swts_Type.set("")
-                        Swts_Size.set("")
+                        Swts_Size.set("0")
 
         def ch_Chocolates():
                 if (var12.get() == 1):
@@ -492,7 +492,7 @@ class ElsalamPizza():
                         self.cboChocolates.configure(state='disabled')
                         self.cboChocolatesS.configure(state='disabled')
                         Choco_Type.set("")
-                        Choco_Size.set("")
+                        Choco_Size.set("0")
 
         def ch_Patisseries():
                 if (var13.get() == 1):
@@ -507,7 +507,7 @@ class ElsalamPizza():
                         self.cboPattissries.configure(state='disabled')
                         self.cboPattissriesS.configure(state='disabled')
                         Patiss_Type.set("")
-                        Pattis_Size.set("")
+                        Pattis_Size.set("0")
 
         def ch_SweetPies():
                 if (var14.get() == 1):
@@ -522,7 +522,7 @@ class ElsalamPizza():
                         self.cboSweetPies.configure(state='disabled')
                         self.cboSweetPiesS.configure(state='disabled')
                         SwPies_Type.set("")
-                        SwPies_Size.set("")
+                        SwPies_Size.set("0")
 
 #============================== FUNCTIONS TO POPULATE THE COMBOBOXES OF SIZE BASED ON COMBOBOXES OF TYPE =========================================         
         def iEaster_Pizz(event):
@@ -700,12 +700,14 @@ class ElsalamPizza():
                 self.cboSweetPiesS.config(values=size_sp)
 
 #================================================= TOP FRAME 2 RIGHT =====================================================       
+        
         # Eastern Pizza
         self.chEasternPizza = Checkbutton(TopFrame2Right, variable=var1, onvalue=1, offvalue=0, command=ch_EasternPizza, text=" بيتزا شرقي ",  font=('arial', 18, 'bold'), width=12, bg='#7E7E81')
         self.chEasternPizza.grid(row=1,column=3, pady=7) 
   
         self.cboEasternPizza = ttk.Combobox(TopFrame2Right, state='disabled', font=('calibri', 12), justify=CENTER, textvariable=E_PizzaType)
         self.cboEasternPizza.bind("<<ComboboxSelected>>", iEaster_Pizz)
+        self.cboEasternPizza.option_add('*TCombobox*Listbox.Justify', 'center') 
         self.cboEasternPizza['value'] = ('', E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,E11,E12,E13,E14,E15,E16,E17,E18)
         self.cboEasternPizza.current(0)
         self.cboEasternPizza.grid(row=1, column=2, padx=7, pady=7)

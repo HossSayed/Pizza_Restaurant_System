@@ -2,7 +2,6 @@ import Pizza_Restaurant
 from Pizza_Restaurant import *
 from Pizza_Restaurant import ElsalamPizza
 
-
 # Eastern Pizza
 E1 = 'جبنة رومي'
 E2 = 'سجق'
