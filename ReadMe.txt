@@ -5,6 +5,8 @@ What is the program:
 
 & The program is a pizza and sweet restaurant management system in Arabic language.
 
+Usage:
+
 0- All CheckButtons, Comboboxes, and textboxs are disabled by default or when the 'Reset' button is pressed.
 1- The Admin choose the type of food or sweets by checking the CheckButton.
 2- The Comboboxes of the selected CheckButton will be enabled and the Admin can choose the food and its size(written in price).
