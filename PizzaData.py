@@ -1,11 +1,14 @@
-import Pizza_Restaurant
-from Pizza_Restaurant import *
-from Pizza_Restaurant import ElsalamPizza
+"""
+Data of name of the food and sweets
+in Arabic, referenced by a letter+number for abstracting 
+the long names.
+
+"""
 
 # Eastern Pizza
-E1 = 'جبنة رومي'
+E1 = "جبنة رومي"
 E2 = 'سجق'
-E3 = 'سجق ضاني'
+E3 = "سجق ضاني"
 E4 = 'لحمة'
 E5 = 'سوسيس'
 E6 = 'شيش طاووق'

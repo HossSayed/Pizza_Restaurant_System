@@ -137,7 +137,7 @@ class ElsalamPizza():
 #===================================== FUNCTIONS OF THE BUTTONS ==============================================================
         # Exit Function
         def Exit():
-                iExit = tkinter.messagebox.askyesno(" Pizza Restaurant Management  ", " Do you want to exit from the system?                     ")
+                iExit = tkinter.messagebox.askyesno(" Pizza Restaurant Management  ", "                    هل تريد متأكد من أنك تريد الخروج؟ ")
                 if iExit > 0:
                         root.destroy()
                         return
@@ -151,55 +151,97 @@ class ElsalamPizza():
 
         # Total Cost Function
         def TotalCost():
-                # Get the Sum of the Required Quantity
-                a = int(EasternPizza.get())
-                b = int(ItalianPizza.get())
-                c = int(AlexPies.get())
-                d = int(PizzaRolls.get())
-                e = int(Shawarma.get())
-                f = int(Hawawshi.get())
-                g = int(BakedPasta.get())
-                h = int(Cripe.get())
-                i = int(SweetCripe.get())
-                j = int(Muejanat.get())
-                k = int(Sweets.get())
-                l = int(Chocolates.get())
-                m = int(Patissries.get())
-                n = int(SweetPies.get())
-                rn = a + b + c + d + e + f + g + h + i + j + k + l + m + n
-                ReqNumber.set(rn)
-                
-                # Get The Size of the required food or sweets from the Size's ComboBoxes
-                a1 = E_PizzaSize.get()
-                b1 = It_PizzaSize.get()
-                c1 = Alx_PiesSize.get()
-                d1 = Rol_PizzaSize.get()
-                e1 = Shw_Size.get()
-                f1 = Haw_Size.get()
-                g1 = BPasta_Size.get() 
-                h1 = Cr_Size.get()
-                i1 = SwCr_Size.get()
-                j1 = Muj_Size.get()
-                k1 = Swts_Size.get()
-                l1 = Choco_Size.get()
-                m1 = Pattis_Size.get()
-                n1 = SwPies_Size.get()
-
                 try:
+                        # Get the Sum of the Required Quantity
+                        a = int(EasternPizza.get())
+                        b = int(ItalianPizza.get())
+                        c = int(PizzaRolls.get())
+                        d = int(AlexPies.get())       
+                        e = int(Shawarma.get())
+                        f = int(Hawawshi.get())
+                        g = int(BakedPasta.get())
+                        h = int(Cripe.get())
+                        i = int(SweetCripe.get())
+                        j = int(Muejanat.get())
+                        k = int(Sweets.get())
+                        l = int(Chocolates.get())
+                        m = int(Patissries.get())
+                        n = int(SweetPies.get())
+                        rn = a + b + c + d + e + f + g + h + i + j + k + l + m + n
+                        ReqNumber.set(rn)
+                        
+                        # Get The Size of the required food or sweets from the Size's ComboBoxes
+                        a1 = E_PizzaSize.get()
+                        b1 = It_PizzaSize.get()
+                        c1 = Rol_PizzaSize.get()
+                        d1 = Alx_PiesSize.get()
+                        e1 = Shw_Size.get()
+                        f1 = Haw_Size.get()
+                        g1 = BPasta_Size.get() 
+                        h1 = Cr_Size.get()
+                        i1 = SwCr_Size.get()
+                        j1 = Muj_Size.get()
+                        k1 = Swts_Size.get()
+                        l1 = Choco_Size.get()
+                        m1 = Pattis_Size.get()
+                        n1 = SwPies_Size.get()
+               
                         # Calculate the Total Cost
                         t = (a*a1) + (b*b1) + (c*c1) + (d*d1) + (e*e1) + (f*f1) + (g*g1) + (h*h1) + (i*i1) + (j*j1) + (k*k1) + (l*l1) + (m*m1) + (n*n1)
                         Total.set(t)
-
+                    
                         # Calculate the remaining money(SubTotal) by subtracting what the client paid from total cost 
-                        st = int(Paid.get()) - t
-                        SubTotal.set(st)
-                # Raise a warning message if the Paid box is not numeric or not empty
-                except ValueError:
                         if (Paid.get() == ""):
                                 pass
                         else:
-                                tkinter.messagebox.showwarning(" Pizza Restaurant Management  ", "  من فضلك تاكد من أن خانة 'المبلغ المدفوع ' بها أرقام فقط أو اتركها فارغة")
-                        
+                                st = int(Paid.get()) - t
+                                SubTotal.set(st)
+
+                                # TextReceipt filling
+                                now = datetime.datetime.now()
+                                DateOfOrder = str(now.strftime("%Y-%m-%d    %H:%M:%S"))
+                                self.txtReceipt.delete("1.0", END)
+                                self.txtReceipt.insert(END, '    تاريخ الطلب      ' + DateOfOrder + "\n\n\n",'tag-right')
+                                self.txtReceipt.insert(END, f"         جنيه       عدد                         "+"\n\n", 'tag-right')
+                                if (var1.get() == 1 and int(EasternPizza.get()) > 0):
+                                        self.txtReceipt.insert(END, f" بيتزا شرقي               {str(a * a1)}         {EasternPizza.get()}       ({E_PizzaType.get()})" +"\n\n", 'tag-right')
+                                if (var2.get() == 1 and int(ItalianPizza.get()) > 0):
+                                        self.txtReceipt.insert(END, f" بيتزا إيطالي             {str(b * b1)}         {ItalianPizza.get()}       ({It_PizzaType.get()})" +"\n\n", 'tag-right')
+                                if (var3.get() == 1 and int(PizzaRolls.get()) > 0):
+                                        self.txtReceipt.insert(END, f" بيتزا صاروخ              {str(c * c1)}         {PizzaRolls.get()}       ({Rol_PizzaType.get()})" +"\n\n", 'tag-right')
+                                if (var4.get() == 1 and int(AlexPies.get()) > 0):
+                                        self.txtReceipt.insert(END, f" فطيرة اسكندراني          {str(d * d1)}         {AlexPies.get()}       ({Alx_PiesType.get()})" +"\n\n", 'tag-right')
+                                if (var5.get() == 1 and int(Shawarma.get()) > 0):
+                                        self.txtReceipt.insert(END, f" شاورما السلام             {str(e * e1)}         {Shawarma.get()}       ({Shw_Type.get()})" +"\n\n", 'tag-right')
+                                if (var6.get() == 1 and int(Hawawshi.get()) > 0):
+                                        self.txtReceipt.insert(END, f" حواوشي السلام             {str(f * f1)}         {Hawawshi.get()}       ({Haw_Type.get()})" +"\n\n", 'tag-right')
+                                if (var7.get() == 1 and int(BakedPasta.get()) > 0):
+                                        self.txtReceipt.insert(END, f" مكرونة فرن               {str(g * g1)}         {BakedPasta.get()}       ({BPasta_Type.get()})" +"\n\n", 'tag-right')
+                                if (var8.get() == 1 and int(Cripe.get()) > 0):
+                                        self.txtReceipt.insert(END, f" كريب حادق                {str(h * h1)}         {Cripe.get()}       ({Cr_Type.get()})" +"\n\n", 'tag-right')
+                                if (var9.get() == 1 and int(SweetCripe.get()) > 0):
+                                        self.txtReceipt.insert(END, f" كريب حلو                 {str(i * i1)}         {SweetCripe.get()}       ({SwCr_Type.get()})" +"\n\n", 'tag-right')
+                                if (var10.get() == 1 and int(Muejanat.get()) > 0):
+                                        self.txtReceipt.insert(END, f" معجنات                   {str(j * j1)}         {Muejanat.get()}       ({Muj_Type.get()})" +"\n\n", 'tag-right')
+                                if (var11.get() == 1 and int(Sweets.get()) > 0):
+                                        self.txtReceipt.insert(END, f" حلويات                   {str(k * k1)}         {Sweets.get()}       ({Swts_Type.get()})" +"\n\n", 'tag-right')
+                                if (var12.get() == 1 and int(Chocolates.get()) > 0):
+                                        self.txtReceipt.insert(END, f" شيكولاتات                 {str(l * l1)}         {Chocolates.get()}       ({Choco_Type.get()})" +"\n\n", 'tag-right')
+                                if (var13.get() == 1 and int(Patissries.get()) > 0):
+                                        self.txtReceipt.insert(END, f" مخبوزات                  {str(m * m1)}         {Patissries.get()}       ({Patiss_Type.get()})" +"\n\n", 'tag-right')
+                                if (var14.get() == 1 and int(SweetPies.get()) > 0):
+                                        self.txtReceipt.insert(END, f" فطائر حلوة               {str(n * n1)}         {SweetPies.get()}       ({SwPies_Type.get()})" +"\n\n", 'tag-right')
+                                self.txtReceipt.insert(END, '    --------------------------------------------------------- ' + "\n")
+                                self.txtReceipt.insert(END, 'العدد الكلي                         ' + ReqNumber.get() + "\n", 'tag-right')
+                                self.txtReceipt.insert(END, 'الحساب الكلي             ' + Total.get() + "\n", 'tag-right')
+                                self.txtReceipt.insert(END, '    --------------------------------------------------------- ' + "\n")
+                                self.txtReceipt.insert(END, 'المبلغ المدفوع           ' + Paid.get() + "\n", 'tag-right')
+                                self.txtReceipt.insert(END, 'باقي الحساب              ' + SubTotal.get() + "\n", 'tag-right')
+                                
+                # Raise a warning message if the inputs in the boxes are not numeric
+                except ValueError:
+                        tkinter.messagebox.showwarning(" Pizza Restaurant Management  ", "        !من فضلك تاكد من أن الخانات بها أرقام فقط")
+ 
 
         # Reset Function
         def Reset():
@@ -312,7 +354,7 @@ class ElsalamPizza():
                 self.cboSweetPies.configure(state='disabled')
                 self.cboSweetPiesS.configure(state='disabled')        
 
-#================================== DISABLE THE COMBOBOXES AND TEXTBOXES IF THE CHECKBUTTON IS NOT SELECTED =========================
+#================================== DISABLE THE COMBOBOX AND TEXTBOX IF THE CHECKBUTTON IS NOT SELECTED =========================
         def ch_EasternPizza():
                 if (var1.get() == 1):
                         self.txtEasternPizzaN.configure(state=NORMAL)
@@ -355,9 +397,9 @@ class ElsalamPizza():
                         self.txtPizzaRollN.configure(state=DISABLED)
                         PizzaRolls.set("0")
                         self.cboPizzaRoll.configure(state='disabled')
-                        self.cboPizzaRollS.configure(state='disabled')
-                        Rol_PizzaSize.set("")
-                        Rol_PizzaType.set("0")
+                        self.cboPizzaRollS.configure(state='disabled')                      
+                        Rol_PizzaType.set("")
+                        Rol_PizzaSize.set("0")
 
         def ch_AlexPies():
                 if (var4.get() == 1):
@@ -707,7 +749,7 @@ class ElsalamPizza():
   
         self.cboEasternPizza = ttk.Combobox(TopFrame2Right, state='disabled', font=('calibri', 12), justify=CENTER, textvariable=E_PizzaType)
         self.cboEasternPizza.bind("<<ComboboxSelected>>", iEaster_Pizz)
-        self.cboEasternPizza.option_add('*TCombobox*Listbox.Justify', 'center') 
+        self.cboEasternPizza.option_add('*TCombobox*Listbox.Justify', 'center')
         self.cboEasternPizza['value'] = ('', E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,E11,E12,E13,E14,E15,E16,E17,E18)
         self.cboEasternPizza.current(0)
         self.cboEasternPizza.grid(row=1, column=2, padx=7, pady=7)
@@ -928,8 +970,9 @@ class ElsalamPizza():
         self.txtSweetPiesN.grid(row=7, column=0, padx=7, pady=7)  
 
 #================================== TOP FRAME 1 LEFT ========================================================================
-        self.txtReceipt = Text(TopFrame1Left, state='disabled', font=('courier', 12), width=64, height=12)
+        self.txtReceipt = Text(TopFrame1Left, state='normal', font=('courier', 12), width=64, height=12)
         self.txtReceipt.grid(row=0, column=0)
+        self.txtReceipt.tag_configure('tag-right', justify='right')
 
 #================================== TOP FRAME 1 RIGHT b ========================================================================
         # Buttons

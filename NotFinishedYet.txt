@@ -1,15 +1,18 @@
 Developed by Hoss Sayed;
 
-this program is not finished yet.
 
 What is the program:
 
-- The program is a pizza and sweet restaurant for Arabic customers
-- Food written in Arabic.
--It's management system for the cashier to choose what the customers ordered
-and calculate the total cost.
-- Enter what the customer payment.
+& The program is a pizza and sweet restaurant management system in Arabic language.
 
-Tasks Not fininshed:
-- Print the outputs in the receipt textbox.
-- Create placeholder for the customer's payment box(" to tell the cashier that he has to enter the payment")
+0- All CheckButtons, Comboboxes, and textboxs are disabled by default or when the 'Reset' button is pressed.
+1- The Admin choose the type of food or sweets by checking the CheckButton.
+2- The Comboboxes of the selected CheckButton will be enabled and the Admin can choose the food and its size(written in price).
+3- Type the quantity in the textbox 
+4- The Admin can choose multiple CheckButtons but the Comboboxes/textbox of the selected CheckButton must be fill in otherwise an error will be raised.
+5- There is a placeholder in label 'المبلغ المدفوع' to alert the Admin to enter what the customer has paid, or left it empty by deleting the placeholder.
+6- Press the 'المبلغ الكلي' button to calculate the total cost.
+7- A bill will be filled in the Receipt textbox
+8- Press 'طباعة' button to print the bill
+9- Press 'مسح' button to reset everything
+10- Press 'خروج' to exit from the application(press 'yes' to exit)
